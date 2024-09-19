@@ -1,6 +1,6 @@
 <template>
   <div class="sticky top-0 left-0 p-4 z-10 w-full bg-white shadow-md">
-    <div class="flex items-center justify-around">
+    <div class="container flex items-center justify-around">
       <h1 class="text-3xl font-bold">RM</h1>
       <button class="p-3 bg-yellow-600 rounded-md flex items-center gap-3">
         <i class="pi pi-align-justify"></i>

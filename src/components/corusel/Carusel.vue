@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto py-8">
-    <div class="main rounded-md">
+    <div class="main rounded-md mt-20 mb-20">
       <swiper
         :slidesPerView="1"
         :spaceBetween="30"

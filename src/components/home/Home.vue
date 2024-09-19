@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-4">
+  <div class="container mx-auto p-10 mb-40">
     <div v-if="isloading" class="text-center text-gray-600">
       <p class="text-lg">Loading...</p>
     </div>
@@ -10,19 +10,35 @@
       <div
         v-for="movie in movies"
         :key="movie.id"
-        class="bg-white shadow-md rounded-lg overflow-hidden"
+        class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full"
       >
         <img
           :src="movie?.imagesUrl[0]"
           alt="Movie Image"
           class="w-full h-48 object-contain"
         />
-        <div class="p-4">
-          <h2 class="text-xl font-semibold mb-2">{{ movie.name }}</h2>
+        <div class="p-4 flex flex-col flex-grow">
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-xl font-semibold">{{ movie.name }}</h2>
+            <button
+              @click="toggleLike(movie)"
+              class="text-red-500 hover:text-red-700 transition"
+            >
+              <i
+                :class="{
+                  'pi pi-heart': !movie.liked,
+                  'pi pi-heart-fill': movie.liked,
+                }"
+                class="text-2xl"
+              ></i>
+            </button>
+          </div>
           <p class="text-gray-700 mb-1">Brand: {{ movie.brand }}</p>
-          <p class="text-gray-600 mb-2 line-clamp-3">{{ movie.description }}</p>
+          <p class="text-gray-600 mb-2 line-clamp-3 flex-grow">
+            {{ movie.description }}
+          </p>
           <p class="text-lg font-bold mb-4">Price: ${{ movie.price }}</p>
-          <div class="flex gap-2">
+          <div class="flex gap-2 mt-auto">
             <button
               @click="addToCart(movie)"
               class="bg-yellow-600 text-black p-3 rounded-lg shadow-md text-sm w-full flex items-center gap-2 justify-center"
@@ -58,6 +74,7 @@ export default {
           description: item.description,
           price: item.price,
           imagesUrl: item.imagesUrl,
+          liked: false, // Added liked property
         }));
         movies.value = newArr;
         isloading.value = false;
@@ -67,6 +84,10 @@ export default {
       }
     };
 
+    const toggleLike = (movie) => {
+      movie.liked = !movie.liked;
+    };
+
     onMounted(() => {
       fetchMovie();
     });
@@ -74,6 +95,7 @@ export default {
     return {
       movies,
       isloading,
+      toggleLike,
     };
   },
 };
