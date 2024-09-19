@@ -9,7 +9,7 @@
       <form action="" class="flex border rounded-md">
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Qidirsh..."
           class="p-3 rounded-md focus:outline-none w-96"
         />
         <button
@@ -48,20 +48,21 @@
     </div>
     <Dialog
       v-model:visible="visible"
-      header="Edit Profile"
+      header="RM"
       :style="{ width: '30rem' }"
       class="p-4"
     >
       <div class="text-center mb-6">
-        <h2 class="text-xl font-semibold">Update Your Information</h2>
+        <h2 class="text-xl font-semibold">Send Your Information</h2>
       </div>
       <form class="space-y-6">
         <div class="flex flex-col gap-2">
-          <label for="username" class="font-medium">Username</label>
+          <label for="number" class="font-medium">Number</label>
           <InputText
-            id="username"
+            id="number"
             class="p-2 border rounded-md w-full"
             autocomplete="off"
+            placeholder="+998"
           />
         </div>
         <div class="flex flex-col gap-2">
@@ -70,6 +71,7 @@
             id="email"
             class="p-2 border rounded-md w-full"
             autocomplete="off"
+            placeholder="Your Email"
           />
         </div>
         <div class="flex justify-end gap-4 mt-6">
@@ -114,6 +116,7 @@ export default {
 <style>
 .p-dialog {
   border-radius: 8px;
+  box-shadow: none;
 }
 
 .p-dialog-header {

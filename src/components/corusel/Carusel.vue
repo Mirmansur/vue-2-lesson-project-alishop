@@ -28,7 +28,6 @@
           </div>
         </swiper-slide>
 
-        <!-- Slide 2 -->
         <swiper-slide>
           <div class="slide-item flex justify-center items-center">
             <img
@@ -39,11 +38,19 @@
           </div>
         </swiper-slide>
 
-        <!-- Slide 3 -->
         <swiper-slide>
           <div class="slide-item flex justify-center items-center">
             <img
               src="https://cdn.images.express.co.uk/img/dynamic/59/590x/1790063_1.jpg"
+              alt="Slide Image"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <div class="slide-item flex justify-center items-center">
+            <img
+              src="https://fdn.gsmarena.com/imgroot/news/22/08/asus-zenbook-17-fold-oled/-1200/gsmarena_001.jpg"
               alt="Slide Image"
               class="w-full h-full object-cover"
             />
