@@ -1,14 +1,10 @@
 <template>
   <div>
     <Header />
-
     <div v-if="$route.name === 'Home'">
       <Carusel />
-      <Home />
     </div>
-
-    <RouterView />
-
+    <RouterView v-if="selectedMovie" :movie="selectedMovie" />
     <div class="mt-40">
       <Footer />
     </div>
@@ -26,9 +22,17 @@ export default {
   components: {
     Header,
     Carusel,
-    Home,
     RouterView,
     Footer,
+  },
+  data() {
+    return {
+      selectedMovie: {
+        id: 1,
+        title: "Sample Movie",
+        description: "This is a sample movie",
+      },
+    };
   },
 };
 </script>
