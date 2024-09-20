@@ -12,11 +12,13 @@
         :key="movie.id"
         class="bg-white shadow-md rounded-lg overflow-hidden flex flex-col h-full"
       >
-        <img
-          :src="movie?.imagesUrl[0]"
-          alt="Movie Image"
-          class="w-full h-48 object-contain"
-        />
+        <RouterLink :to="`/single/${_id}`">
+          <img
+            :src="movie?.imagesUrl[0]"
+            alt="Movie Image"
+            class="w-full h-48 object-contain"
+          />
+        </RouterLink>
         <div class="p-4 flex flex-col flex-grow">
           <div class="flex justify-between items-center mb-2">
             <h2 class="text-xl font-semibold">{{ movie.name }}</h2>
