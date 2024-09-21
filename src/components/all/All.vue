@@ -24,14 +24,14 @@
             <h2 class="text-xl font-semibold">{{ movie.name }}</h2>
             <button
               @click="toggleLike(movie)"
-              class="text-red-500 hover:text-red-700 transition"
+              class="flex items-center justify-center transition duration-300 focus:outline-none"
             >
               <i
                 :class="{
-                  'pi pi-heart': !movie.liked,
-                  'pi pi-heart-fill': movie.liked,
+                  'pi pi-heart text-2xl': !movie.liked,
+                  'pi pi-heart-fill text-red-500 text-2xl animate-bounce':
+                    movie.liked,
                 }"
-                class="text-2xl"
               ></i>
             </button>
           </div>
@@ -42,7 +42,7 @@
           <p class="text-lg font-bold mb-4">Price: ${{ movie.price }}</p>
           <div class="flex gap-2 mt-auto">
             <button
-              @click="addToCart(movie)"
+              @click="addProductToCart(movie)"
               class="bg-yellow-600 text-black p-3 rounded-lg shadow-md text-sm w-full flex items-center gap-2 justify-center"
             >
               <i class="pi pi-shopping-cart text-2xl"></i>
@@ -58,14 +58,24 @@
 <script>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  props: {
-    movie: {
-      type: Object,
-      required: true,
+  computed: {
+    ...mapGetters("wishlist", ["wishlistItems"]),
+    isItemInWishlist() {
+      return (movieId) => {
+        return (this.wishlistItems || []).some((item) => item.id === movieId);
+      };
     },
   },
+  methods: {
+    ...mapActions("wishlist", ["toggleHeart"]),
+    toggleLike(movie) {
+      this.toggleHeart(movie);
+    },
+  },
+
   setup() {
     const movies = ref([]);
     const isloading = ref(true);
@@ -92,10 +102,6 @@ export default {
       }
     };
 
-    const toggleLike = (movie) => {
-      movie.liked = !movie.liked;
-    };
-
     onMounted(() => {
       fetchMovie();
     });
@@ -103,10 +109,7 @@ export default {
     return {
       movies,
       isloading,
-      toggleLike,
     };
   },
 };
 </script>
-
-<style></style>

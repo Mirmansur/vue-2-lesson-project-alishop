@@ -12,6 +12,16 @@ const routes = [
     name: "Single",
     component: () => import("../components/single/Single.vue"),
   },
+  {
+    path: "/like",
+    name: "Like",
+    component: () => import("../components/like/Like.vue"),
+  },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: () => import("../components/cart/Cart.vue"),
+  },
 ];
 
 const router = createRouter({

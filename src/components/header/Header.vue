@@ -22,18 +22,22 @@
         </button>
       </form>
       <div class="flex items-center gap-10">
-        <button class="flex flex-col items-center">
-          <i
-            class="pi pi-heart text-2xl transition-[0.4s] hover:text-yellow-600"
-          ></i>
-          <p class="text-sm font-medium">Saralanganlar</p>
-        </button>
-        <button class="flex flex-col items-center">
-          <i
-            class="pi pi-shopping-cart text-2xl transition-[0.4s] hover:text-yellow-600"
-          ></i>
-          <p class="text-sm font-medium">Savat</p>
-        </button>
+        <RouterLink to="/like">
+          <button class="flex flex-col items-center">
+            <i
+              class="pi pi-heart text-2xl transition-[0.4s] hover:text-yellow-600"
+            ></i>
+            <p class="text-sm font-medium">Saralanganlar</p>
+          </button>
+        </RouterLink>
+        <RouterLink to="/cart">
+          <button class="flex flex-col items-center">
+            <i
+              class="pi pi-shopping-cart text-2xl transition-[0.4s] hover:text-yellow-600"
+            ></i>
+            <p class="text-sm font-medium">Savat</p>
+          </button>
+        </RouterLink>
         <button
           class="p-3 bg-yellow-600 text-black font-medium rounded-md"
           @click="visible = true"
