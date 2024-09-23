@@ -67,16 +67,16 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters("wishlist", ["wishlistItems"]),
-    isItemInWishlist() {
-      return (movieId) => {
-        return (this.wishlistItems || []).some((item) => item.id === movieId);
-      };
-    },
   },
   methods: {
     ...mapActions("wishlist", ["toggleHeart"]),
+    ...mapActions("cart", ["addToCart"]),
+
     toggleLike(movie) {
       this.toggleHeart(movie);
+    },
+    addProductToCart(movie) {
+      this.addToCart(movie);
     },
   },
 

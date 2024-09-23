@@ -1,4 +1,3 @@
-// store/modules/cart.js
 import { saveToLocalStorage } from "../../components/helper/saveToLS";
 
 const state = {
@@ -48,6 +47,7 @@ const getters = {
 };
 
 export default {
+  namespaced: true, // Bu qator namespace qo'shadi
   state,
   mutations,
   actions,
