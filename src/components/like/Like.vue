@@ -15,6 +15,7 @@
       >
         <RouterLink :to="`/single/${item.id}`">
           <img
+            v-if="item.imagesUrl && item.imagesUrl.length > 0"
             :src="item.imagesUrl[0]"
             alt="Item Image"
             class="w-full h-48 object-contain transition duration-300 hover:scale-110"

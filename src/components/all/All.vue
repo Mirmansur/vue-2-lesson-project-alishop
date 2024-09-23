@@ -14,7 +14,7 @@
       >
         <RouterLink :to="`/single/${movie.id}`">
           <img
-            :src="movie?.imagesUrl[0]"
+            :src="movie.imagesUrl?.[0] || '/fallback-image.jpg'"
             alt="Movie Image"
             class="w-full h-48 object-contain"
           />
@@ -26,13 +26,17 @@
               @click="toggleLike(movie)"
               class="flex items-center justify-center transition duration-300 focus:outline-none"
             >
-              <i
-                :class="{
-                  'pi pi-heart text-2xl': !movie.liked,
-                  'pi pi-heart-fill text-red-500 text-2xl animate-bounce':
-                    movie.liked,
-                }"
-              ></i>
+              <transition name="like-animation">
+                <i
+                  :class="{
+                    'pi pi-heart text-gray-400 text-2xl transition duration-300':
+                      !movie.liked,
+                    'pi pi-heart-fill text-red-500 text-2xl transition duration-300 animate-bounce':
+                      movie.liked,
+                  }"
+                  :key="movie.liked"
+                ></i>
+              </transition>
             </button>
           </div>
           <p class="text-gray-700 mb-1">Brand: {{ movie.brand }}</p>
@@ -113,3 +117,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.like-animation-enter-active,
+.like-animation-leave-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+.like-animation-enter,
+.like-animation-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+button:hover i {
+  transform: scale(1.2);
+}
+</style>
