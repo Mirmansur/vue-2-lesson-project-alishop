@@ -38,6 +38,10 @@
         </div>
       </div>
     </div>
+    <!-- Wishlist items total price -->
+    <div v-if="wishlistItems.length > 0" class="text-gray-800 text-center mt-8">
+      <p class="text-lg font-bold">Total Price: ${{ totalPrice }}</p>
+    </div>
   </div>
 </template>
 
@@ -47,6 +51,11 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
     ...mapGetters("wishlist", ["wishlistItems"]),
+    totalPrice() {
+      return this.wishlistItems.reduce((total, item) => {
+        return total + item.price;
+      }, 0);
+    },
   },
   methods: {
     ...mapActions("wishlist", ["toggleHeart"]),

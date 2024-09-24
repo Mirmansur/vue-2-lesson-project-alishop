@@ -23,20 +23,38 @@
       </form>
       <div class="flex items-center gap-10">
         <RouterLink to="/like">
-          <button class="flex flex-col items-center">
-            <i
-              class="pi pi-heart text-2xl transition-[0.4s] hover:text-yellow-600"
-            ></i>
-            <p class="text-sm font-medium">Saralanganlar</p>
-          </button>
+          <div class="relative">
+            <div class="absolute -top-2 left-11">
+              <span
+                class="bg-red-500 text-white rounded-full text-xs p-1 px-2 text-center shadow-md font-bold"
+              >
+                {{ wishlistItems.length }}
+              </span>
+            </div>
+            <button class="flex flex-col items-center">
+              <i
+                class="pi pi-heart text-2xl transition-[0.4s] hover:text-yellow-600"
+              ></i>
+              <p class="text-sm font-medium">Saralanganlar</p>
+            </button>
+          </div>
         </RouterLink>
         <RouterLink to="/cart">
-          <button class="flex flex-col items-center">
-            <i
-              class="pi pi-shopping-cart text-2xl transition-[0.4s] hover:text-yellow-600"
-            ></i>
-            <p class="text-sm font-medium">Savat</p>
-          </button>
+          <div class="relative">
+            <div class="absolute -top-2 left-4">
+              <span
+                class="bg-red-500 text-white rounded-full text-xs p-1 px-2 text-center shadow-md font-bold"
+              >
+                {{ cartProducts.length }}
+              </span>
+            </div>
+            <button class="flex flex-col items-center">
+              <i
+                class="pi pi-shopping-cart text-2xl transition-[0.4s] hover:text-yellow-600"
+              ></i>
+              <p class="text-sm font-medium">Savat</p>
+            </button>
+          </div>
         </RouterLink>
         <button
           class="p-3 bg-yellow-600 text-black font-medium rounded-md"
@@ -99,8 +117,23 @@
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
+import { mapGetters } from "vuex";
 
 export default {
+  computed: {
+    ...mapGetters("cart", ["cartProducts"]),
+    ...mapGetters("wishlist", ["wishlistItems"]),
+    cartTotalPrice() {
+      return this.cartProducts.reduce((total, product) => {
+        return total + product.price * product.quantity;
+      }, 0);
+    },
+    wishlistTotalPrice() {
+      return this.wishlistItems.reduce((total, item) => {
+        return total + item.price;
+      }, 0);
+    },
+  },
   components: {
     Dialog,
     InputText,

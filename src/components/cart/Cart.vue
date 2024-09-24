@@ -7,7 +7,6 @@
     </div>
 
     <div v-else class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-      <!-- Left side - Cart products -->
       <div class="lg:col-span-2 space-y-8">
         <div
           v-for="product in cartProducts"
@@ -58,7 +57,6 @@
         </div>
       </div>
 
-      <!-- Right side - Summary -->
       <div class="bg-gray-50 shadow-md rounded-lg p-6 space-y-4">
         <h3 class="text-lg font-semibold">Jami</h3>
         <div class="text-sm text-gray-600 flex justify-between">
@@ -108,11 +106,9 @@ export default {
       this.removeFromCart(productId);
     },
     incrementQuantity(product) {
-      // Implement logic to increment quantity
       product.quantity++;
     },
     decrementQuantity(product) {
-      // Implement logic to decrement quantity
       if (product.quantity > 1) {
         product.quantity--;
       }
